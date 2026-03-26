@@ -23,8 +23,8 @@ jobs:
           node-version: latest
           cache: npm
 
-      # - name: install dependences
-      #   run: npm ci
+      - name: install dependences
+        run: npm ci
 
       - name: Run Super-Linter
         uses: github/super-linter@v5
@@ -32,12 +32,9 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
- 
-          
-
-      # - name: Build Project
-      #   run:  npm run build
+  
+      - name: Build Project
+        run:  npm run build
 
       - name: Upload run Artifact
         uses: actions/upload-artifact@v4
