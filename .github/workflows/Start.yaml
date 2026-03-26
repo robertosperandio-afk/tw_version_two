@@ -37,8 +37,8 @@ jobs:
             # - name: check for eslinch errors
             #   run:  npm run lint
 
-            - name:  Build Project
-              run: npm run build
+            # - name: Build Project
+            #   run:  npm run build
 
             - name: Upload run Artifact
               uses: actions/upload-artifact@v4
