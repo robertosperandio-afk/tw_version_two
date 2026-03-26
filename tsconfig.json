@@ -21,8 +21,8 @@
 
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
-      "@repositories/*": ["./src/core/repositories/*"],
+      "@/*": ["src/*"],
+      "@repositories/*": ["src/core/repositories/*"],
     },
 
     "emitDecoratorMetadata": true,
