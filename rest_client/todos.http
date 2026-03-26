@@ -1,0 +1,23 @@
+GET http://localhost:3333/api/todos
+
+###
+
+GET http://localhost:3333/api/todos/2
+
+###
+
+POST http://localhost:3333/api/todos
+Content-Type: application/json
+
+{
+  "title": "New gol bola pora",
+  "description": "Todo golbola é lixo"
+}
+
+###
+
+DELETE http://localhost:3333/api/todos/5
+
+###
+
+PATCH http://localhost:3333/api/todos/1/done
