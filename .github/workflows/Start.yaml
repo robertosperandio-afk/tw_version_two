@@ -9,6 +9,14 @@ jobs:
     Teste-and-build:
         runs-on: ubuntu-latest
         steps:
+            - name: Configurar Node.js
+              uses: actions/setup-node@v4
+              with:
+               node-version: '20' # Escolha a versão do Node desejada
+
+            - name: Instalar pacotes
+              run: npm install # Ou 'npm ci' para builds mais rápidos e limpos
+
             - name: Checkout
               uses: actions/checkout@v4
 
