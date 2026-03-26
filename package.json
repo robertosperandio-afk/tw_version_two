@@ -23,6 +23,7 @@
     "@vitest/ui": "1.2.0",
     "dotenv": "16.3.1",
     "eslint": "8.56.0",
+    "jest": "^30.3.0",
     "prisma": "^5.8.1",
     "supertest": "6.3.4",
     "tsup": "8.0.1",

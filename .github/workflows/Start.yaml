@@ -57,4 +57,10 @@ jobs:
               env:
                CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+            - name: Validar Relatorio
+              run: npx jest --coverage
+
+
+               
+
                 
