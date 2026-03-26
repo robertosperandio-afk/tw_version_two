@@ -26,8 +26,8 @@ jobs:
             - name: install npm
               run: npm install
             
-            - name: install dependences
-              run: npm ci
+            # - name: install dependences
+            #   run: npm ci
 
             # - name: check for eslinch errors
             #   run:  npm run lint
