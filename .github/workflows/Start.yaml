@@ -45,8 +45,8 @@ jobs:
             - name: Upload Coverage Artifact
               uses: actions/upload-artifact@v4
               with:
-                name: converage
-                path: converage
+                name: coverage
+                path: coverage
             
 
             - name: Upload Coverage reports to CodeCov
