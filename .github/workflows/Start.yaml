@@ -1,0 +1,48 @@
+name: Teste-and-build
+run-name: Test and Build
+
+on:
+   - workflow_call
+   - workflow_dispatch
+
+jobs:
+    Teste-and-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup node - 18
+              uses: actions/setup-node@v6
+              with:
+                node-version: latest
+                cache: npm
+            - name: install dependences
+              run: npm ci
+
+            - name: check for eslinch errors
+              run: npm run lint
+
+            - name:  Build Project
+              run: npm run build
+
+            - name: Upload run Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: build
+                path: build
+
+            - name: run testes
+              run: npm run test:coverage
+
+            - name: Upload Coverage Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: converage
+                path: converage
+
+            - name: Upload Coverage reports to CodeCov
+              uses: codecov/codecov-action@v5
+              env:
+               CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+                
