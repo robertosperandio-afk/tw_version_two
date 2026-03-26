@@ -2,70 +2,52 @@ name: Teste-and-build
 run-name: Test and Build
 
 on:
-   - workflow_call
-   - workflow_dispatch
+  - workflow_call
+  - workflow_dispatch
 
 jobs:
-    Teste-and-build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Configurar Node.js
-              uses: actions/setup-node@v4
-              with:
-               node-version: '20' # Escolha a versão do Node desejada
+  Teste-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Escolha a versão do Node desejada
 
-            - name: Checkout
-              uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Setup node - 18
-              uses: actions/setup-node@v6
-              with:
-                node-version: latest
-                cache: npm
+      - name: Setup node - 18
+        uses: actions/setup-node@v6
+        with:
+          node-version: latest
+          cache: npm
 
+      # - name: install dependences
+      #   run: npm ci
 
-            - name: valida data
-              run: |
-                while read -r cmd
-                      do
-                        eval sudo $cmd
-                      done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+      # - name: check for eslinch errors
+      #   run:  npm run lint
 
-            # - name: install dependences
-            #   run: npm ci
+      # - name: Build Project
+      #   run:  npm run build
 
-            # - name: check for eslinch errors
-            #   run:  npm run lint
+      - name: Upload run Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
 
-            # - name: Build Project
-            #   run:  npm run build
+      # - name: run testes
+      #   run:  npm run test:coverage
 
-            - name: Upload run Artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: build
-                path: build
+      - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage
 
-            # - name: run testes
-            #   run:  npm run test:coverage
-
- 
-            - name: Upload Coverage Artifact
-              uses: actions/upload-artifact@v4
-              with:
-                name: coverage
-                path: coverage
-            
-
-            - name: Upload Coverage reports to CodeCov
-              uses: codecov/codecov-action@v5
-              env:
-               CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-            - name: Validar Relatorio
-              run: npx jest --coverage
-
-
-               
-
-                
+      - name: Upload Coverage reports to CodeCov
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

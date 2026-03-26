@@ -1,0 +1,14 @@
+name: ci
+run-name: CI
+
+on:
+ pull_request:
+   branches:
+    - main
+
+jobs:
+  run-test-and-build:
+    uses: ./.github/workflows/start.yaml
+    secrets: inherit
+
+    
