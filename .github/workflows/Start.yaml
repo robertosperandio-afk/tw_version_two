@@ -23,17 +23,22 @@ jobs:
                 node-version: latest
                 cache: npm
 
-            - name: install npm
-              run: npm install
-            
+
+            - name: valida data
+              run: |
+                while read -r cmd
+                      do
+                        eval sudo $cmd
+                      done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
+
             # - name: install dependences
             #   run: npm ci
 
             # - name: check for eslinch errors
             #   run:  npm run lint
 
-            # - name:  Build Project
-            #   run: npm run build
+            - name:  Build Project
+              run: npm run build
 
             - name: Upload run Artifact
               uses: actions/upload-artifact@v4
