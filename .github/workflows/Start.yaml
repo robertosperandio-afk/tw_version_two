@@ -41,15 +41,18 @@ jobs:
             # - name: run testes
             #   run:  npm run test:coverage
 
+            - name: install py.coverage
+              run: py -m pip install coverage
+
             - name: Upload Coverage Artifact
               uses: actions/upload-artifact@v4
               with:
                 name: converage
                 path: converage
-            
 
             - name: Upload Coverage reports to CodeCov
               uses: codecov/codecov-action@v5
               env:
                CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
                 
