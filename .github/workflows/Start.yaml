@@ -48,14 +48,10 @@ jobs:
                 name: converage
                 path: converage
             
-            - name: Upload coverage
-              uses: codecov/codecov-action@v5
-              with:
-                token: ${{ secrets.CODECOV_TOKEN }}
 
-            # - name: Upload Coverage reports to CodeCov
-            #   uses: codecov/codecov-action@v5
-            #   env:
-            #    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+            - name: Upload Coverage reports to CodeCov
+              uses: codecov/codecov-action@v5
+              env:
+               CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
                 
