@@ -23,8 +23,8 @@ jobs:
           node-version: latest
           cache: npm
 
-      - name: install dependences
-        run: npm ci
+      #- name: install dependences
+        #run: npm ci
 
       - name: Run Super-Linter
         uses: github/super-linter@v5
