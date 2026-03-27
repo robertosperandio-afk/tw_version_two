@@ -1,0 +1,38 @@
+name: Deploy
+run-name: Deploy
+
+on:
+  - workflow_call
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Setup QEMU
+        uses: actions/setup-qemu-actions@v3
+
+      - name: Docker Meta
+        id: meta
+        uses: docker/metadata-actions@v5
+        with:
+          images: robertosperandio/tw_version_two
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-actions@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-actions@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Builder and Push Docker Image
+        uses: docker/build-push-actions@v5
+        with:
+        push: true
+        tags: ${{ steps.meta.outputs.tag }}
+        labels:  ${{ steps.meta.outputs.labels }}
